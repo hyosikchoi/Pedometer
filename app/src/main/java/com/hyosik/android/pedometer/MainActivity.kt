@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch {
-            Accelerometer.numStepFLow.collect {
+            Accelerometer.numStepFlow.collect {
                  binding.tvSteps.text = it.toString()
             }
         }

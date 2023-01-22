@@ -14,7 +14,7 @@ object Accelerometer : SensorEventListener, StepListener {
     private var sensorManager: SensorManager? = null
 
     private val _numStepFlow : MutableStateFlow<Int> = MutableStateFlow(0)
-    val numStepFLow
+    val numStepFlow
         get() = _numStepFlow
 
     init {
