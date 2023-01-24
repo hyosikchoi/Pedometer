@@ -13,7 +13,7 @@ object Accelerometer : SensorEventListener, StepListener {
     private var simpleStepDetector: StepDetector? = null
     private var sensorManager: SensorManager? = null
 
-    private val _numStepFlow : MutableStateFlow<Int> = MutableStateFlow(0)
+    private val _numStepFlow: MutableStateFlow<Int> = MutableStateFlow(0)
     val numStepFlow
         get() = _numStepFlow
 
@@ -21,7 +21,7 @@ object Accelerometer : SensorEventListener, StepListener {
         simpleStepDetector = StepDetector().apply { registerListener(this@Accelerometer) }
     }
 
-    override fun onSensorChanged(event : SensorEvent?) {
+    override fun onSensorChanged(event: SensorEvent?) {
         if (event!!.sensor.type == Sensor.TYPE_ACCELEROMETER) {
             simpleStepDetector!!.updateAccelerometer(event.timestamp, event.values[0], event.values[1], event.values[2])
         }
