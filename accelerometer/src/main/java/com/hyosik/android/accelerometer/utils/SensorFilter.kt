@@ -1,4 +1,4 @@
-package com.hyosik.android.pedometer.utils
+package com.hyosik.android.accelerometer.utils
 
 class SensorFilter {
 

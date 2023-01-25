@@ -1,11 +1,11 @@
-package com.hyosik.android.pedometer.utils
+package com.hyosik.android.accelerometer.utils
 
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import com.hyosik.android.pedometer.listener.StepListener
+import com.hyosik.android.accelerometer.listener.StepListener
 import kotlinx.coroutines.flow.MutableStateFlow
 
 object Accelerometer : SensorEventListener, StepListener {

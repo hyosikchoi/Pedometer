@@ -1,6 +1,6 @@
-package com.hyosik.android.pedometer.utils
+package com.hyosik.android.accelerometer.utils
 
-import com.hyosik.android.pedometer.listener.StepListener
+import com.hyosik.android.accelerometer.listener.StepListener
 
 class StepDetector {
 

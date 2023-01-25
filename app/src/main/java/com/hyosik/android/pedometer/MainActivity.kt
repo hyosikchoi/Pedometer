@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import com.hyosik.android.accelerometer.utils.Accelerometer
 import com.hyosik.android.pedometer.databinding.ActivityMainBinding
-import com.hyosik.android.pedometer.utils.Accelerometer
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnStop.setOnClickListener {
+            Accelerometer.startStep()
             Accelerometer.unRegisterSensorListener()
         }
 

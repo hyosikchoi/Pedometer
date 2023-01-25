@@ -1,4 +1,4 @@
-package com.hyosik.android.pedometer.listener
+package com.hyosik.android.accelerometer.listener
 
 interface StepListener {
     fun step(timeNs: Long)
