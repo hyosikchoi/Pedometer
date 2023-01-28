@@ -1,42 +1,34 @@
-package com.hyosik.android.accelerometer.utils
+package com.hyosik.android.detector
 
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import com.hyosik.android.accelerometer.listener.StepListener
+import android.util.Log
 import kotlinx.coroutines.flow.MutableStateFlow
 
-object Accelerometer : SensorEventListener, StepListener {
-
-    private var simpleStepDetector: StepDetector? = null
+object Detector : SensorEventListener {
     private var sensorManager: SensorManager? = null
 
     private val _numStepFlow: MutableStateFlow<Int> = MutableStateFlow(0)
     val numStepFlow
         get() = _numStepFlow
 
-    init {
-        simpleStepDetector = StepDetector().apply { registerListener(this@Accelerometer) }
-    }
-
     override fun onSensorChanged(event: SensorEvent?) {
-        if (event!!.sensor.type == Sensor.TYPE_ACCELEROMETER) {
-            simpleStepDetector!!.updateAccelerometer(event.timestamp, event.values[0], event.values[1], event.values[2])
+        if(event!!.sensor.type == Sensor.TYPE_STEP_DETECTOR) {
+            if(event.values[0] == 1.0f) {
+                _numStepFlow.value += 1
+            }
         }
     }
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {}
 
-    override fun step(timeNs: Long) {
-        _numStepFlow.value += 1
-    }
-
     fun registerSensorListener(context: Context) {
         sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensorManager?.let{
-            it.registerListener(this, it.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_FASTEST)
+            it.registerListener(this, it.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR), SensorManager.SENSOR_DELAY_FASTEST)
         }
     }
 
@@ -48,5 +40,4 @@ object Accelerometer : SensorEventListener, StepListener {
     fun stopStep() {
         _numStepFlow.value = 0
     }
-
 }
