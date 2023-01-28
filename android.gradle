@@ -10,6 +10,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions "app"
+    productFlavors {pedometer {}}
+
     buildTypes {
         release {
             minifyEnabled false
